@@ -1,1 +1,45 @@
-<p>Balance</p>
+<div style="padding: 50px;">
+    <div class="card">
+        <div class="card-header">
+          Balance
+        </div>
+        <div class="card-body">
+          <table class = "table">
+              <tr>
+                  <th scope ="row">TD Spark Balance</th>
+                  <td>$25.00</td>
+              </tr>
+              <tr>
+                <th scope ="row">Kiva Balance</th>
+                <td>$0.00</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-header">
+          Past Projects
+        </div>
+        <div class="card-body">
+          <div *ngFor = "let loan of loans">
+            <a href="https://www.kiva.org/lend/{{loan.id}}" target="_blank" >{{loan.name}}</a>
+            <img src ="https://www.kiva.org/img/h150w150/{{loan.image.id}}.jpg">
+          </div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-header">
+          Lending
+        </div>
+        <div class="card-body">
+          <div *ngFor = "let loan of opportunties">
+            <a href="https://www.kiva.org/lend/{{loan.id}}" target="_blank" >{{loan.name}}</a>
+            <img src ="https://www.kiva.org/img/h150w150/{{loan.image.id}}.jpg">
+          </div>
+        </div>
+      </div>
+    
+      
+</div>
