@@ -7,6 +7,8 @@ import { BalanceComponent } from './balance/balance.component';
 import { FaqComponent } from './faq/faq.component';
 import { RouterModule } from '@angular/router';
 import {appRoutes} from './app.routes';
+import {HttpClientModule} from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import {appRoutes} from './app.routes';
     AppRoutingModule,
     RouterModule.forRoot(
       appRoutes
-    )
+    ),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
