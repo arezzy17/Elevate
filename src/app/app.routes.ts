@@ -7,6 +7,10 @@ export const appRoutes: Routes = [
     path: 'faq',
     component: FaqComponent
   },
+  {
+    path: '',
+    component: BalanceComponent
+  },
   { path: 'balance',
     component: BalanceComponent
   }
