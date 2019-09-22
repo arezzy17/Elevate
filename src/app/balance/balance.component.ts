@@ -5,6 +5,7 @@ import { Kiva } from 'src/kiva-response';
 import { catchError, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { Transactions } from 'src/TDReponse';
+import { Customers } from 'src/customers';
 import $ from 'jquery';
 
 @Component({
@@ -21,6 +22,8 @@ export class BalanceComponent implements OnInit {
   kivaBalance: number = 0;
   balanceSwapped = false;
   loadingBalance = false;
+  customername : string; 
+  CustomerId:string;
   hideModal = true;
   constructor(private http: HttpClient) { }
 
@@ -72,6 +75,22 @@ export class BalanceComponent implements OnInit {
       totalTransactions+= transaction.currencyAmount;
     }
     this.cashBackBalance = totalTransactions*.02;
+    this.CustomerId = transactions.customerId;
+    console.log(this.CustomerId)
+    this.getCustomerName(this.CustomerId);
+  }
+
+  async getCustomerName(CustomerId: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json', "Authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJDQlAiLCJ0ZWFtX2lkIjoiNGU5YjhjYjEtYjNhZC0zYzNmLWJjNjItMTVkZTRmOGJjZDk0IiwiZXhwIjo5MjIzMzcyMDM2ODU0Nzc1LCJhcHBfaWQiOiJmNDYzNjA2Mi03YzkzLTQyMmItOTNhYi1kYmE5MmY2NzgzMjIifQ.2Ec3xxzowUx47TRsYVK4G2Mz4WDDpV46ZszKpknAokM" })
+    };
+    const response = await this.http.get<Customers>("https://api.td-davinci.com/api/customers/" + CustomerId , httpOptions).pipe(
+      tap(_ => console.log("Fetched"),
+        catchError(this.handleError<Customers>('Get customer Data')
+        ))).toPromise();
+    const transactions = response.result;
+    this.customername = transactions.givenName;
+    
   }
 
   transferBalance(){
