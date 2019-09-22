@@ -1,4 +1,31 @@
 .nav-bg{
-    background-color: rgb(18, 66, 42) !important;
-    color: 
+    height: 100px !important;
+    border-bottom-color: rgb(204, 204, 204);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    padding: 0px 20px 0px 20px;
+}
+
+.nav-link{
+    color: #008a00 !important;
+    font-weight: 800;
+    font-size: 21px;
+    transition: color .5s ease;
+}
+.nav-link:hover{
+    color: #282828 !important;
+
+}
+
+.nav-item{
+    margin: 0px 20px 0px 20px;
+}
+
+.navbar-toggler-icon{
+    color: #008a00 !important; 
+}
+
+.top-green{
+    background-color:rgb(0, 138, 0);
+    height: 36px;
 }
