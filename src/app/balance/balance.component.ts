@@ -5,6 +5,8 @@ import { Kiva } from 'src/kiva-response';
 import { catchError, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { Transactions } from 'src/TDReponse';
+import $ from 'jquery';
+
 @Component({
   selector: 'app-balance',
   templateUrl: './balance.component.html',
@@ -16,6 +18,10 @@ export class BalanceComponent implements OnInit {
   opportunities: Lender[];
   accountId: string = "f5058d61-3918-4532-ad1a-d344407aea10";
   cashBackBalance: number = 0;
+  kivaBalance: number = 0;
+  balanceSwapped = false;
+  loadingBalance = false;
+  hideModal = true;
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
@@ -66,8 +72,22 @@ export class BalanceComponent implements OnInit {
       totalTransactions+= transaction.currencyAmount;
     }
     this.cashBackBalance = totalTransactions*.02;
+  }
 
-
+  transferBalance(){
+    if(!this.balanceSwapped){
+      this.loadingBalance = true;
+      setTimeout(() => 
+      {
+        this.hideModal = false;
+        this.kivaBalance = this.cashBackBalance;
+        this.cashBackBalance = 0;
+        this.balanceSwapped = true;
+        this.loadingBalance = false;
+        
+      }, 1000);
+      
+    }
 
   }
 }
