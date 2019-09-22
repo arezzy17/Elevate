@@ -8,6 +8,13 @@
     font-size: 30px;
 }
 
+#labell {
+    color:#008a00;
+}
+
+.card-header {
+    font-size: 20px;
+
 .kiva-btn{
     width:33%;
 }
