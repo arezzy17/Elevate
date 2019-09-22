@@ -12,7 +12,7 @@ import { Observable, of } from 'rxjs';
 export class BalanceComponent implements OnInit {
 
   loans: Lender[];
-  opportunties: Lender[];
+  opportunities: Lender[];
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
@@ -35,9 +35,9 @@ export class BalanceComponent implements OnInit {
       tap(_ => console.log("Fetched"),
       catchError(this.handleError<Kiva>('Get Transaction Data')
     ))).toPromise();
-    this.opportunties = res2.loans;
+    this.opportunities = res2.loans;
     
-    console.log(this.opportunties);
+    console.log(this.opportunities);
 
     return res;
   }
