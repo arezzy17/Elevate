@@ -50,7 +50,10 @@ export class BalanceComponent implements OnInit {
   }
 
   async getBalance(){
-    await this.http.get<Kiva>("https://api.kivaws.org/v1/loans/newest.json?page=2&per_page=5", httpOptions).pipe(
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    await this.http.get<Kiva>("api.td-davinci.com/api/accounts/{acctId}/transactions", httpOptions).pipe(
       tap(_ => console.log("Fetched"),
         catchError(this.handleError<Kiva>('Get Transaction Data')
         ))).toPromise();
